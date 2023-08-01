@@ -1,9 +1,9 @@
-name: CI Workflow
+name: system
 on:
   push:
     branches:
       - main
-  workflow_dispatch:  # Manual trigger
+  workflow_dispatch: 
 
 jobs:
   build:
@@ -12,12 +12,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Display a message
-        run: echo "Priveet, Is it really working??"
-
       - name: Gather System Information
         run: 
-          echo "System Information:"
-          lscpu
-          free -h
-          df -h
+            lscpu
+            free -h
+            df -h
