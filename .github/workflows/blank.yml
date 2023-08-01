@@ -14,6 +14,6 @@ jobs:
 
       - name: Gather System Information
         run: 
-            lscpu
-            free -h
+            lscpu |
+            free -h |
             df -h
