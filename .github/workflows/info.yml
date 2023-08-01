@@ -1,0 +1,35 @@
+name: Gather System Information
+
+on: [push]
+
+jobs:
+  system_info:
+    name: Gather System Information
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Additional step to gather system information
+      - name: Gather System Information
+        uses: actions/setup-latest@v2
+
+      # Step to print runner and hardware details
+      - name: Print System Information
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const runner = process.env.RUNNER_OS;
+            const processor = require('os').cpus()[0].model;
+            const memory = require('os').totalmem() / (1024 ** 3);
+            console.log(`Runner OS: ${runner}`);
+            console.log(`Processor: ${processor}`);
+            console.log(`Total Memory (GB): ${memory}`);
+
+      # Your existing workflow steps go here...
